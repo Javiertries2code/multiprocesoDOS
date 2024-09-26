@@ -27,11 +27,14 @@ public class Ejer2 {
 	String line = null;
 	
 	while ((line = brer.readLine()) != null)
-				Fulltext+=line;
+				{Fulltext+=line + "\n";
+				}
 		
 	} catch (Exception e) {
 		// TODO: handle exception
 	}
+	System.out.println(Fulltext);
+
 	return Fulltext;
 }
 }

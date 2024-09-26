@@ -77,6 +77,13 @@ public class Frame extends JFrame {
 		contentPane.add(btnExec);
 		
 		JButton btnCMD = new JButton("Start");
+		btnCMD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String command = textCMD.getText();
+				execCMD(command);
+				
+			}
+		});
 		btnCMD.setBounds(181, 66, 89, 23);
 		contentPane.add(btnCMD);
 		
@@ -169,8 +176,17 @@ public class Frame extends JFrame {
 
 	}
 	
-//	private void execFiveString(String Fulltext) {
-//		
-//	}
+	private void execCMD(String command) {
+		int pid;
+		int ppid;
+	String textArea = new Ejer2().runFromCMD(command);
+	pid = new PPIDFinder().findPidName(command);
+	ppid = new PPIDFinder().findPPidNumber(pid);
+	System.out.println(pid +" xxxx "+ ppid);
+	textAreaCMD.setText(textArea);
+	lblPidCmd.setText(String.valueOf(pid));
+	lblPPidCmd.setText(String.valueOf(ppid));
+
+	}
 	
 }

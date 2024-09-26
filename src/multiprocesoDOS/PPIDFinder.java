@@ -6,14 +6,12 @@ import java.io.InputStreamReader;
 
 public class PPIDFinder {
 
-	public int findPidName(String ProcessName, String command) {
+	public int findPidName(String ProcessName) {
 		int p_pid = 0;
-		if (command.equalsIgnoreCase("pid"))
-			command = "ProcessId";
-		else if (command.equalsIgnoreCase("ppid"))
-			command = "ParentProcessId";
-		else
-			return -1;
+		
+		String	command = "ProcessId";
+		
+		
 		ProcessBuilder pb = new ProcessBuilder("CMD", "/C",
 				"wmic process where name=\"" + ProcessName + "\" get " + command);
 
