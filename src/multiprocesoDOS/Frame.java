@@ -24,6 +24,16 @@ public class Frame extends JFrame {
 	private JTextArea textAreaCMD = null;
 	private JLabel lblPidExec = null;
 	private JLabel lblPPidExec = null;
+	private JLabel lblPidFiveExec = null;
+	private JLabel lblPPidFiveExec = null;
+	private JLabel lblPPidCmd = null;
+	private JLabel lblPidCmd = null;
+
+	
+
+
+
+
 
 
 	/**
@@ -71,6 +81,12 @@ public class Frame extends JFrame {
 		contentPane.add(btnCMD);
 		
 		JButton btnFiveExec = new JButton("Start");
+		btnFiveExec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String command = textFiveExec.getText();
+				execGetInfoFive(command);
+			}
+		});
 		btnFiveExec.setBounds(318, 66, 89, 23);
 		contentPane.add(btnFiveExec);
 		
@@ -89,16 +105,16 @@ public class Frame extends JFrame {
 		contentPane.add(textFiveExec);
 		textFiveExec.setColumns(10);
 		
-		JTextArea textAreaCMD = new JTextArea();
-		textAreaCMD.setBounds(107, 153, 127, 82);
+		 textAreaCMD = new JTextArea("");
+		textAreaCMD.setBounds(107, 166, 127, 69);
 		contentPane.add(textAreaCMD);
 		
-		JTextArea textAreaFiveExec = new JTextArea();
-		textAreaFiveExec.setBounds(282, 153, 127, 82);
+		 textAreaFiveExec = new JTextArea("");
+		textAreaFiveExec.setBounds(282, 166, 127, 69);
 		contentPane.add(textAreaFiveExec);
 		
 		JLabel lblResultado = new JLabel("Resultadp");
-		lblResultado.setBounds(10, 158, 67, 14);
+		lblResultado.setBounds(10, 171, 67, 14);
 		contentPane.add(lblResultado);
 		
 		JLabel lblPid = new JLabel("PID");
@@ -108,27 +124,27 @@ public class Frame extends JFrame {
 		contentPane.add(lblPPID);
 		
 		 lblPidExec = new JLabel();
-		lblPidExec.setBounds(66, 100, 46, 14);
+		lblPidExec.setBounds(66, 100, 68, 14);
 		contentPane.add(lblPidExec);
 		
-		JLabel lblPPidCmd = new JLabel();
-		lblPPidCmd.setBounds(188, 132, 46, 14);
+		 lblPPidCmd = new JLabel("");
+		lblPPidCmd.setBounds(188, 132, 67, 14);
 		contentPane.add(lblPPidCmd);
 		
-		JLabel lblPidCmd = new JLabel();
-		lblPidCmd.setBounds(191, 100, 46, 14);
+		 lblPidCmd = new JLabel("");
+		lblPidCmd.setBounds(191, 100, 76, 14);
 		contentPane.add(lblPidCmd);
 		
 		 lblPPidExec = new JLabel("");
-		lblPPidExec.setBounds(66, 132, 46, 14);
+		lblPPidExec.setBounds(66, 132, 71, 14);
 		contentPane.add(lblPPidExec);
 		
-		JLabel lblPidFiveExec = new JLabel();
-		lblPidFiveExec.setBounds(318, 100, 46, 14);
+		 lblPidFiveExec = new JLabel("");
+		lblPidFiveExec.setBounds(297, 100, 127, 47);
 		contentPane.add(lblPidFiveExec);
 		
-		JLabel lblPPidFiveExec = new JLabel();
-		lblPPidFiveExec.setBounds(318, 132, 46, 14);
+		 lblPPidFiveExec = new JLabel("");
+		lblPPidFiveExec.setBounds(318, 151, 89, 14);
 		contentPane.add(lblPPidFiveExec);
 	}
 	/**
@@ -142,6 +158,14 @@ public class Frame extends JFrame {
 		System.out.println(pid +"     " +ppid);
 		lblPidExec.setText(String.valueOf(pid));
 		lblPPidExec.setText(String.valueOf(ppid));
+
+	}
+	
+	//private void execGetInfoFive(String command, JLabel lblPidFiveExec, JLabel lblPPidFiveExec, JTextArea textAreaFiveExec  ) {
+		private void execGetInfoFive(String command ) {
+
+		new Ejer1().runFiveProcess(command, lblPidFiveExec, lblPPidFiveExec, textAreaFiveExec );
+		
 
 	}
 	
