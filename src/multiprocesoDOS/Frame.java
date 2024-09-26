@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Frame extends JFrame {
 
@@ -17,7 +19,12 @@ public class Frame extends JFrame {
 	private JTextField textExec;
 	private JTextField textCMD;
 	private JTextField textFiveExec;
-	private final JLabel lblPPID = new JLabel("PPID");
+	private  JLabel lblPPID = new JLabel("PPID");
+	private JTextArea textAreaFiveExec = null;
+	private JTextArea textAreaCMD = null;
+	private JLabel lblPidExec = null;
+	private JLabel lblPPidExec = null;
+
 
 	/**
 	 * Launch the application.
@@ -48,6 +55,14 @@ public class Frame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnExec = new JButton("Start");
+		//it gets the command name from the textfiled, and call runprocess, that bringsback the pid
+		btnExec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String command = textExec.getText();
+				execGetInfo(command);
+				
+			}
+		});
 		btnExec.setBounds(48, 66, 89, 23);
 		contentPane.add(btnExec);
 		
@@ -92,7 +107,7 @@ public class Frame extends JFrame {
 		lblPPID.setBounds(5, 131, 51, 16);
 		contentPane.add(lblPPID);
 		
-		JLabel lblPidExec = new JLabel();
+		 lblPidExec = new JLabel();
 		lblPidExec.setBounds(66, 100, 46, 14);
 		contentPane.add(lblPidExec);
 		
@@ -104,7 +119,7 @@ public class Frame extends JFrame {
 		lblPidCmd.setBounds(191, 100, 46, 14);
 		contentPane.add(lblPidCmd);
 		
-		JLabel lblPPidExec = new JLabel("");
+		 lblPPidExec = new JLabel("");
 		lblPPidExec.setBounds(66, 132, 46, 14);
 		contentPane.add(lblPPidExec);
 		
@@ -116,4 +131,22 @@ public class Frame extends JFrame {
 		lblPPidFiveExec.setBounds(318, 132, 46, 14);
 		contentPane.add(lblPPidFiveExec);
 	}
+	/**
+	 * It runs the process, get pid and ppid, and sets labels
+	 * @param command
+	 * @param messenger
+	 */
+	private void execGetInfo(String command) {
+		int pid = new Ejer1().runProcess(command);
+		int ppid = new PPIDFinder().findPPidNumber(pid);
+		System.out.println(pid +"     " +ppid);
+		lblPidExec.setText(String.valueOf(pid));
+		lblPPidExec.setText(String.valueOf(ppid));
+
+	}
+	
+//	private void execFiveString(String Fulltext) {
+//		
+//	}
+	
 }
